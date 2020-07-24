@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          // 1.在{}中可以正常显示 String Number Array 类型的数据
+          name: "why",
+          age: 18,
+          names: ["a", "b", "c"],
+          // 2.在{}中不显示 Null Undefined Boolean 类型的数据
+          test: null,
+          test1: undefined,
+          test2: true,
+          flag: true,
+          // 3.对象不能作为jsx的子类
+          obj: {
+            name: "why",
+            age: 18
+          }
+        };
+      }
+
+      render() {
+        const state = this.state;
+        return (
+          <div>
+            <h2>{state.names}</h2>  
+
+            <h2>{state.test}</h2>
+            <h2>{state.test1}</h2>
+            <h2>{state.test2}</h2>
+            
+            { /* 设置不显示的应用场景 */ }
+            <h2>{ state.flag ? "内容" : null }</h2>
+            <h2>{ state.flag && "内容" }</h2>
+
+            { /* 不显示类型显示方法 */ }
+            <h2>{String(state.test)}</h2>
+            <h2>{state.test1 + ""}</h2>
+            <h2>{state.test2.toString()}</h2>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>

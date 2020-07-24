@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    class Father {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      run() {
+        console.log(this.name + this.age);
+      }
+    }
+
+    class Son extends Father {
+      constructor(name, age, title) {
+        // 子类必须初始化父类对象
+        super(name, age);
+        this.title = title;
+      }
+    }
+
+    const s = new Son("why", 18);
+    s.run();
+  </script>
+</body>
+</html>

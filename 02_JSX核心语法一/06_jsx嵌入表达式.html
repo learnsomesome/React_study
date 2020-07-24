@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          firstName: "Stephen",
+          lastName: "Curry",
+          flag: true
+        };
+      }
+
+      getFullName() {
+        const { firstName, lastName } = this.state;
+        return firstName + " " + lastName;
+      }
+
+      render() {
+        const { firstName, lastName, flag } = this.state;
+        return (
+          <div>
+            { /* 1.运算符表达式 */ }
+            <h2>{ firstName + " " + lastName }</h2>  
+            <h2>{ 20 * 50 }</h2>
+            
+            { /* 2.三元表达式 */ }
+            <h2>{ flag ? 1 : 0 }</h2>
+
+            { /* 3.进行函数调用 */ }
+            <h2>{ this.getFullName() }</h2>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>
