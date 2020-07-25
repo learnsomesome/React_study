@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          isLogin: false
+        };
+      }
+
+      handleLogin() {
+        this.setState({
+          isLogin: !this.state.isLogin
+        });
+      }
+
+      render() {
+        // 每次值更新都会执行 render 函数，重新生成 const 所声明的变量
+        const { isLogin } = this.state;
+        const titleDisplayValue = isLogin ? "block" : "none";
+
+        return (
+          <div>
+            <h2 style={{display: titleDisplayValue}}>欢迎回家，curry~</h2>
+            <button onClick={e => this.handleLogin()}>{isLogin ? "退出" : "登录"}</button>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>
