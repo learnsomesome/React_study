@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,14 @@
 
   <style>
     table {
-      border: 1px solid #eee;
+      border: 1px solid #000;
       border-collapse: collapse;
     }
-    
-    th, td {
-      border: 1px solid #eee;
-      padding: 10px 16px;
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 20px 16px;
       text-align: center;
     }
 
@@ -22,10 +24,11 @@
     }
 
     .count {
-      margin: 0 5px;
+      margin: 0 6px;
     }
   </style>
 </head>
+
 <body>
   <div id="app"></div>
 
@@ -36,7 +39,6 @@
   <script src="./format-utils.js"></script>
 
   <script type="text/babel">
-
     class App extends React.Component {
       constructor() {
         super();
@@ -75,16 +77,32 @@
       }
 
       getTotalPrice() {
-        const {books} = this.state;
-        let totalPrice = books.reduce((preVal, item) => {
+        const totalPrice = this.state.books.reduce((preVal, item) => {
           return preVal + item.price * item.count;
         }, 0);
-        return totalPrice;
+        return formatPrice(totalPrice);
       }
 
-      render() {
-        const {books} = this.state;
+      removeItem(index) {
+        const newBooks = this.state.books.filter((item, indey) => index !== indey);
+        this.setState({
+          books: newBooks
+        });
+      }
 
+      handleCountChange(index, count) {
+        const newBooks = this.state.books.map((item, indey) => {
+          if (index === indey) {
+            item.count += count;
+          }
+          return item;
+        });
+        this.setState({
+          books: newBooks
+        });
+      }
+
+      renderBooks() {
         return (
           <div>
             <table>
@@ -100,7 +118,7 @@
               </thead>
               <tbody>
                 {
-                  books.map((item, index) => {
+                  this.state.books.map((item, index) => {
                     return (
                       <tr>
                         <td>{index + 1}</td>
@@ -108,12 +126,12 @@
                         <td>{item.date}</td>
                         <td>{formatPrice(item.price)}</td>
                         <td>
-                          <button>+1</button>
+                          <button disabled={item.count <= 1} onClick={() => this.handleCountChange(index, -1)}>-</button>
                           <span className="count">{item.count}</span>
-                          <button>-1</button>
+                          <button onClick={() => this.handleCountChange(index, 1)}>+</button>
                         </td>
                         <td>
-                          <button>移除</button>
+                          <button onClick={() => this.removeItem(index)}>移除</button>
                         </td>
                       </tr>
                     );
@@ -121,13 +139,22 @@
                 }
               </tbody>
             </table>
-            <h2>总价格：{formatPrice(this.getTotalPrice())}</h2>
+            <h2>总价格：{this.getTotalPrice()}</h2>
           </div>
         );
+      }
+
+      renderEmpty() {
+        return <h2>购物车为空~</h2>
+      }
+
+      render() {
+        return this.state.books.length ? this.renderBooks() : this.renderEmpty();
       }
     }
 
     ReactDOM.render(<App />, document.getElementById("app"));
   </script>
 </body>
+
 </html>

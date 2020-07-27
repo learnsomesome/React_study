@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
       border: 1px solid #eee;
       border-collapse: collapse;
     }
-    
-    th, td {
+
+    th,
+    td {
       border: 1px solid #eee;
       padding: 10px 16px;
       text-align: center;
@@ -26,6 +28,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="app"></div>
 
@@ -75,15 +78,24 @@
       }
 
       getTotalPrice() {
-        const {books} = this.state;
+        const { books } = this.state;
         let totalPrice = books.reduce((preVal, item) => {
           return preVal + item.price * item.count;
         }, 0);
         return totalPrice;
       }
 
-      render() {
-        const {books} = this.state;
+      handleRemove(index) {
+        const { books } = this.state;
+        const newBooks = books.filter((item, indey) => index !== indey);
+        // React设计原则：state中数据的不可变性
+        this.setState({
+          books: newBooks
+        })
+      }
+
+      renderBooks() {
+        const { books } = this.state;
 
         return (
           <div>
@@ -113,7 +125,7 @@
                           <button>-1</button>
                         </td>
                         <td>
-                          <button>移除</button>
+                          <button onClick={() => this.handleRemove(index)}>移除</button>
                         </td>
                       </tr>
                     );
@@ -125,9 +137,20 @@
           </div>
         );
       }
+
+      renderEmptyTip() {
+        return <h2>购物车为空~</h2>
+      }
+
+      render() {
+        const { books } = this.state;
+
+        return books.length ? this.renderBooks() : this.renderEmptyTip();
+      }
     }
 
     ReactDOM.render(<App />, document.getElementById("app"));
   </script>
 </body>
+
 </html>

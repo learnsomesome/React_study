@@ -19,6 +19,11 @@
     const newNums = nums.filter((item, index, arr) => {
       return item >= 3;
     });
+
+    // Reduce
+    const addTotal = nums.reduce((preVal, item, index, arr) => {
+      return preVal + item;
+    }, 0);
   </script>
 </body>
 </html>
