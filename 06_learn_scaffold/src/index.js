@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./10_受控和非受控组件/05_非受控组件的使用";
+import App from "./12_组件内容补充/04_strictMode的使用";
 
-// import "./05_React实现slot/style.css";
+// import "./12_组件内容补充/style.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App name="why"/>, document.getElementById("root"));
