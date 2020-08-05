@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+    // 纯函数
+    function add(num1, num2) {
+      return num1 + num2;
+    }
+
+    add(20, 30);
+    add(20, 30);
+
+    // 非纯函数（确定输入，不确定输出）
+    let bar = 10;
+    function fn(num) {
+      return bar + num;
+    }
+
+    fn(5);
+    fn(5);
+
+    // 非纯函数（函数中所依赖的变量发生改变）
+    const baz = {
+      num3: 10
+    }
+    function fn1(num) {
+      return baz.num3 + num;
+    }
+
+    fn1(5);
+    fn1(5);
+  </script>
+</body>
+</html>
