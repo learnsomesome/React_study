@@ -1,6 +1,6 @@
-import store from "./store/index";
+import store from "./store/index.js";
 
-import { addAction, subAction } from "./store/actionCreators";
+import { addAction, subAction } from "./store/actionCreators.js";
 
 store.subscribe(() => {
   console.log(store.getState().counter);
