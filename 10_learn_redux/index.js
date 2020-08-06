@@ -7,4 +7,5 @@ store.subscribe(() => {
 })
 
 store.dispatch(addAction(5));
-store.dispatch(subAction(12));
+store.dispatch(subAction(15));
+store.dispatch(addAction(10));

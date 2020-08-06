@@ -24,6 +24,7 @@ function reducer(state = initialState, action) {
 }
 
 // store
+
 const store = redux.createStore(reducer);
 
 // 订阅store的修改
