@@ -1,29 +1,20 @@
-import { 
-  ADD_NUMBER, 
-  SUB_NUMBER,
-  CHANGE_BANNER,
-  CHANGE_RECOMMEND
-} from "./constants.js";
+import { combineReducers } from "redux";
+ 
+import { reducer as counterReducer } from "./counter";
+import { reducer as listReducer } from "./list";
 
-const defaultState = {
-  counter: 0,
-  banner: [],
-  recommend: []
-}
+/* const defaultState = {};
 
 function reducer(state = defaultState, action) {
-  switch (action.type) {
-    case ADD_NUMBER:
-      return {...state, counter: state.counter + action.num}
-    case SUB_NUMBER:
-      return {...state, counter: state.counter - action.num}
-    case CHANGE_BANNER:
-      return {...state, banner: action.banner}
-    case CHANGE_RECOMMEND:
-      return {...state, recommend: action.recommend}
-    default:
-      return state;
+  return {
+    counterInfo: counterReducer(state.counterInfo, action),
+    listInfo: listReducer(state.listInfo, action)
   }
-}
+} */
+
+const reducer = combineReducers({
+  counterInfo: counterReducer,
+  listInfo: listReducer
+})
 
 export default reducer;

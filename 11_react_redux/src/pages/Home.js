@@ -1,24 +1,13 @@
 import React, { PureComponent } from 'react'
 
-import axios from "axios";
-
 import { connect } from "react-redux";
 
-import { 
-  addAction,
-  changeBannerAction,
-  changeRecommendAction
-} from "../store/actionCreators"; 
+import { addAction } from "../store/counter";
+import { getHomeMultidataAction } from "../store/list";
 
 class Home extends PureComponent {
   componentDidMount() {
-    axios({
-      url: "http://123.207.32.32:8000/home/multidata"
-    }).then(res => {
-      const data = res.data.data;
-      this.props.changeBanner(data.banner.list);
-      this.props.changeRecommend(data.recommend.list);
-    })
+    this.props.getHomeMultidata();
   }
 
   render() {
@@ -34,18 +23,15 @@ class Home extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.counterInfo.counter
 })
 
 const mapDispatchToProps = dispatch => ({
   increment(num) {
     dispatch(addAction(num));
   },
-  changeBanner(banner) {
-    dispatch(changeBannerAction(banner));
-  },
-  changeRecommend(recommend) {
-    dispatch(changeRecommendAction(recommend));
+  getHomeMultidata() {
+    dispatch(getHomeMultidataAction);
   }
 })
 

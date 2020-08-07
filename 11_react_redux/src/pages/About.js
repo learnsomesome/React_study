@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from "react-redux";
 
-import { subAction } from "../store/actionCreators";
+import { subAction } from "../store/counter";
 
 function About(props) {
 
@@ -37,9 +37,9 @@ function About(props) {
 }
 
 const mapStatToProps = state => ({
-  counter: state.counter,
-  banner: state.banner,
-  recommend: state.recommend
+  counter: state.counterInfo.counter,
+  banner: state.listInfo.banner,
+  recommend: state.listInfo.recommend
 })
 
 const mapDispatchToProps = dispatch => ({
