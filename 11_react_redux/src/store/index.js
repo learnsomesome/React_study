@@ -3,6 +3,7 @@ import thunkMiddleware from "redux-thunk";
 
 import reducer from "./reducer.js";
 
+// trace参数为true时 自动刷新操作
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({trace: true}) : compose;
