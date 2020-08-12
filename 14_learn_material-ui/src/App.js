@@ -1,20 +1,18 @@
-import React, { PureComponent } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { PureComponent, Fragment } from 'react';
+import {
+  Header,
+  Content,
+  Footer
+} from "./component/Layout";
 
 export default class App extends PureComponent {
   render() {
     return (
-      <div>
-        <Button size="small">
-          Small
-        </Button>
-        <Button size="medium">
-          Medium
-        </Button>
-        <Button size="large">
-          Large
-        </Button>
-      </div>
+      <Fragment>
+        <Header />
+        <Content />
+        <Footer />
+      </Fragment>
     )
   }
 }
