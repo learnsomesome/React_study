@@ -1,9 +1,10 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, memo } from 'react';
 import { Paper, Typography, List, ListItem, ListItemText } from "@material-ui/core";
 import { newDataContext } from "../../App";
 
-export default function Leftpane({ paperStyle }) {
+export default memo(function Leftpane({ paperStyle, handleClick }) {
 
+  console.log("Leftpane");
   const newData = useContext(newDataContext);
 
   return (
@@ -17,7 +18,7 @@ export default function Leftpane({ paperStyle }) {
                 {
                   info[1].map(item => {
                     return (
-                      <ListItem key={item.level}>
+                      <ListItem button key={item.level} onClick={() => handleClick(item.level)}>
                         <ListItemText>{item.level}</ListItemText>
                       </ListItem>
                     )
@@ -30,4 +31,4 @@ export default function Leftpane({ paperStyle }) {
       }
     </Paper>
   )
-}
+})
